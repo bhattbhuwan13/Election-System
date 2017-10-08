@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>{% block title %}Home{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'home/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'home/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script type='text/javascript' src="{% static "home/bootstrap/js/jquery-3.2.1.js" %}"></script> -->
+    {% block stylesheet %}
+    {% endblock %}
+</head>
+<body>
+
+{% block navbar %}
+<div class="new">
+
+
+<nav class="navbar navbar-default" style="background-image:url('media/electionSmall.png');">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- <a class="navbar-brand" href="#">WebSiteName</a> -->
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="#">Home</a></li> -->
+      <li><a href="{% url 'registration:homeView' %}">Admin Panel</a></li>
+      <!-- <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li> -->
+    </ul>
+  </div>
+</nav>
+
+</div>
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+</body>
+</html>
+
+
+{% block js %}
+{% endblock %}

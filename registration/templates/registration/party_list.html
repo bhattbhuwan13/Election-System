@@ -1,0 +1,24 @@
+{% extends 'registration/base.html' %}
+
+{% block title %} Read Party{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Candidates</h2>
+  {% if party_list %}
+    <ul>
+        {% for party in party_list %}
+            <li><p>   {{party.name}}</p>
+              <a href="{% url 'registration:party_update' party.party_id %}"><button type="button" class = "btn btn-info" name="button">Update</button></a>
+              <a href="{% url 'registration:party_delete' party.party_id %}"><button type="button" class = "btn btn-danger" name="button">Delete</button></a>
+            </li>
+        {% endfor %}
+    </ul>
+  {% else %}
+    <p>No Party are available.</p>
+  {% endif %}
+
+
+{% endblock %}

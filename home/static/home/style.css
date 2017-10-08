@@ -1,0 +1,16 @@
+body{
+    /*background-color: #5cb85c;
+    /*width: 80%;*/
+    /*margin:auto;*/
+    background-color: transparent;
+    background-image: url('media/electionSmall.png');
+}
+
+.container{
+  /*width: 80%;
+  margin: auto;*/
+}
+
+.new{
+  background-image: url('media/electionSmall.png');
+}

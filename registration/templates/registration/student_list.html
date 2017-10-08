@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+
+{% block title %} Read Student{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Students</h2>
+  {% if student_list %}
+    <ul>
+        {% for student in student_list %}
+            <li><p>{{ student.name }} | {{student.sex}}</p>
+              <a href="{% url 'registration:student_update' student.voter_id %}"><button type="button" class = "btn btn-info" name="button">Update</button></a>
+              <a href="{% url 'registration:student_delete' student.voter_id %}"><button type="button" class = "btn btn-danger" name="button">Delete</button></a>
+            </li>
+        {% endfor %}
+    </ul>
+  {% else %}
+    <p>No Students are available.</p>
+  {% endif %}
+
+{% endblock %}

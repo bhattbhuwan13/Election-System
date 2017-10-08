@@ -1,0 +1,90 @@
+{% extends 'home/base.html' %}
+
+{% block title %} HomePage{% endblock %}
+
+{% load staticfiles %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'home/result.css' %}">
+{% endblock %}
+
+{% block navbar %}
+<div class="new">
+
+
+<nav class="navbar navbar-default" style="background-image:url('media/electionSmall.png');">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- <a class="navbar-brand" href="#">WebSiteName</a> -->
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="#">Home</a></li> -->
+      <li><a href="{% url 'registration:homeView' %}">Admin Panel</a></li>
+      <li><a href="{% url 'registration:winners' %}">Winner List</a></li>
+      <!-- <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li> -->
+    </ul>
+  </div>
+</nav>
+
+</div>
+{% endblock %}
+
+{% block body %}
+
+  <div class="row">
+      <div class="col col-md-4" style="text:strong">
+        <strong>Party</strong>
+      </div>
+
+      <div class="col col-md-4">
+          <strong>Post</strong>
+      </div>
+
+      <div class="col col-md-4" style="text-align:left">
+          <strong>Vote Obtained</strong>
+      </div>
+
+  </div>
+<hr>
+    {% for candidate in candidate_list %}
+        <div class="row">
+          <div class="col col-md-4">
+            {% for party in party_list %}
+              {% if candidate.party_id == party.party_id%}
+                {{ party.name }}
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="col col-md-4">
+              {{ candidate.post }}
+          </div>
+
+          <div class="col col-md-4" style="text-align:left">
+            {{ candidate.votes }}
+          </div>
+
+
+        </div>
+    {% endfor %}
+
+    <style media="screen">
+
+
+      div.row{
+        margin-left:10px;
+        margin-top:10px;
+        /*background-color: blue;*/
+        margin-right: 10px;
+      }
+      div.row-top{
+        margin-left:10px;
+        margin-top:5px;
+        margin-bottom: 10px;
+        background-color: black;
+      }
+
+    </style>
+
+{% endblock %}

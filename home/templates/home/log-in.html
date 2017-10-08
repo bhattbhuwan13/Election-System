@@ -1,0 +1,71 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block stylesheet%}
+<link rel="stylesheet" href="{% static 'home/log-in-style.css' %}">
+{% endblock %}
+
+{% block title %} HomePage{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container">
+
+  <div class="form">
+
+
+    <form class="" action="{% url 'home:log-in'  %}" method="POST">
+      {% csrf_token %}
+      <p class = 'text-info'> Please fill the following form to cast your vote </p>
+      <div class="row">
+        <p class="col col-sm-6">Name</p>
+        <input id = "student_name" type="text" name="student_name" value="" class="col col-sm-6" autofocus>
+      </div>
+
+      <div class="row">
+        <p class="col col-sm-6">Citizenship Number</p>
+        <input id = "citizenship_no" type="number" name="student_citizenship" value="Citizenship Number Here" class="col col-sm-6">
+      </div>
+
+      <div class="row">
+
+        <p class="col col-sm-6">Election</p>
+        <select class="col col-sm-6" name="election">
+          {% for election in election_list %}
+            <option value="{{election.election_id}}">{{election.name}}</option>
+          {% endfor %}
+
+        </select>
+      </div>
+
+    <div class="row">
+      <p class="col col-sm-6"></p>
+      <input id = 'submit-form' class = 'btn btn-info col col-sm-6 '  type="submit" value="SUBMIT">
+    </div>
+
+
+
+    </form>
+
+  </div>
+
+</div>
+    <!-- <a href="{% url 'home:index' %}">Click Here To vote</a> -->
+    <!-- <hr>
+    <a href="{% url 'home:result' %}">Click Here To View Results</a> -->
+
+</div>
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+  $(document).ready(function(){
+
+  });
+
+</script>
+
+{% endblock %}

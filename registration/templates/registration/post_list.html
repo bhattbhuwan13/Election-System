@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+
+{% block title %} Read Post{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Posts</h2>
+  {% if post_list %}
+    <ul>
+        {% for post in post_list %}
+            <li><p>{{ post.post_name }}</p>
+              <a href="{% url 'registration:post_update' post.id %}"><button type="button" class = "btn btn-info" name="button">Update</button></a>
+              <a href="{% url 'registration:post_delete' post.id %}"><button type="button" class = "btn btn-danger" name="button">Delete</button></a>
+            </li>
+        {% endfor %}
+    </ul>
+  {% else %}
+    <p>No Post are available.</p>
+  {% endif %}
+
+{% endblock %}

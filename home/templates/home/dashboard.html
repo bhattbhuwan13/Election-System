@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Admin Dashboard{% endblock %}
+
+{% block body %}
+  <h1>Log-in</h1>
+    <p>This is the dashboard</p>
+
+    {% for candidate in candidates  %}
+      <li>
+        <div class="candidate">
+
+          <div class="col col-md-4">
+
+              <!-- <a href="{% url 'home:candidate_detail' candidate.id %}">{{ candidate.name }}</a> -->
+
+          </div>
+
+
+          <div class="col col-md-4">
+            <a href="{% url 'home:candidate_delete' candidate.id %}"><button class="btn btn-danger">Delete</button></a>
+          </div>
+
+          <div class="col col-md-4">
+            <a href="{% url 'home:candidate_update' candidate.id %}"><button class="btn btn-danger">Update</button></a>
+          </div>
+
+        </div>
+      </li>
+
+
+    {% endfor %}
+
+    <a href="{% url 'home:add_candidate' %}">Click here to add a new candidate</a>
+
+{% endblock %}

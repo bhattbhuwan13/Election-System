@@ -1,0 +1,47 @@
+body{
+  background-image: url('media/electionSmall.png');
+  align-items: center;
+}
+
+.container{
+  max-width:100%;
+  margin:auto;
+}
+
+h3{
+  text-align: center;
+}
+form{
+  margin-top: 10px;
+  width: 50%;
+  float:left;
+  margin-right:25%;
+  margin-left: 25%;
+}
+
+label>img{
+  width: 100%;
+  border-radius: 30px;
+  height: 250px;
+}
+
+.candidate-items{
+  max-width: 40%;
+  float: left;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+input[type='submit']{
+  display: inline;
+  clear: left;
+  clear:right;
+  float: left;
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type='text']{
+  display: none;
+}

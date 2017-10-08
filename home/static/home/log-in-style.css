@@ -1,0 +1,60 @@
+/*{% load static %}*/
+body{
+  background-color: transparent;
+  background-image: url('media/electionSmall.png');
+}
+
+.navbar{
+  background-color: blue;
+}
+div.form{
+  /*background-color: pink;*/
+  width: 80%;
+  margin:auto;
+  align-items: right;
+  box-shadow: 2px 2px white;
+
+}
+form{
+  min-width = 50%;
+  margin-right: 25%;
+  margin-left: 25%;
+  /*background-color: pink;*/
+  margin-top: 25%;
+  margin-bottom: 25%;
+  /*display: inline;*/
+}
+
+p{
+  font-weight: bold;
+}
+
+p.text-info{
+  font-weight: bold;
+  color: red;
+  text-align: center;
+}
+.row{
+  margin-bottom: 6px;
+}
+
+input{
+  border-radius: 8px;
+  /*border-color: black;*/
+}
+
+input:focus{
+  background-color: lightblue;
+}
+
+input[type = 'submit']{
+  /*align: right;*/
+  width:20%;
+  /*margin-right: 0px;*/
+  margin-bottom: 10px;
+}
+
+input[type='submit']:hover{
+  background-color: blue;
+  /*box-shadow: 2px 2px lightblue;*/
+}

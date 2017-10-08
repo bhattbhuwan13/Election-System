@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>{% block title %}Home{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'registration/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'registration/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'registration/style.css' %}">
+    <link rel="stylesheet" href="{% static 'registration/results.css' %}">
+    {% block stylesheet%}
+    {% endblock %}
+</head>
+<body>
+
+{% block navbar %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- <div class="navbar-header">
+      <a class="navbar-brand active" href="{% url 'registration:simple' %}">Registration Site</a>
+    </div> -->
+    <ul class="nav navbar-nav">
+      <li class="active"><a class="navbar-brand active" href="{% url 'registration:simple' %}">Registration Site</a></li>
+      <li><a href="{% url 'home:log-in' %}">Cast Vote</a></li>
+      <li><a href="{% url 'home:result' %}">View Result</a></li>
+      <li><a href="{% url 'registration:winners' %}">View Winners</a></li>
+      <li><a href="{% url 'registration:logout' %}">logout</a></li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+{% block js %}
+{% endblock %}

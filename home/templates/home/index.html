@@ -1,0 +1,277 @@
+{% extends 'home/base.html' %}
+
+{% load staticfiles %}
+
+{% block stylesheet%}
+<link rel="stylesheet" href="{% static 'home/Candidate.css' %}">
+{% endblock %}
+
+{% block title %} HomePage{% endblock %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+
+<!-- {#{{ page_number }} = {% toint(page_number) %}#} -->
+  {% if candidate_list %}
+    {%if page_number == 0 %}
+      <h3>Choose your Candidate's Party for the post of president</h3>
+        <form action="{% url 'home:voted'  %}" method="POST">
+          {% csrf_token %}
+
+            {% for candidate in candidate_list %}
+
+              {% if candidate.post.post_name == 'President'%}
+                <div class="candidate-items">
+                  <input type="radio" id = "candidate{{ forloop.counter }}" name = "candidate" value = "{{ candidate.candidate_id }}" />
+                    <div class="candidate-card">
+
+
+                      <label for="candidate{{ forloop.counter }}">
+                        <!-- {{ candidate.party_id }}  -->
+                        {% for party in party_list%}
+                          {% if party.party_id == candidate.party_id %}
+
+                            <img src="{{ party.symbol.url }}" alt="" class="img ">
+                            <!-- <img src="{% static "home/media/swastikSymbol.png" alt="" class="img" %}"> -->
+                            {{party.name}}
+                            <div class="overlay">
+                              <div class="text">
+                                Click and press submit to vote
+                              </div>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                      </label>
+
+                    </div>
+
+
+                </div>
+              {% endif %}
+
+            {% endfor %}
+
+
+            <input type="text" name="page" value="{{ page_number }}" />
+
+            <div class="">
+              <input type="submit" value="Submit" class = "btn btn-danger"  >
+            </div>
+        </form>
+    {% endif %}
+            <!-- {##} -->
+    {%if page_number == 1 %}
+      <h3>Choose your Candidate's Party for the post of Vice President</h3>
+        <form action="{% url 'home:voted'  %}" method="POST">
+            {% csrf_token %}
+
+            {% for candidate in candidate_list %}
+              {% if candidate.post.post_name == 'Vice President'%}
+              <div class="candidate-items">
+                <input type="radio" id = "candidate{{ forloop.counter }}" name = "candidate" value = "{{ candidate.candidate_id }}" />
+                  <div class="candidate-card">
+
+
+                    <label for="candidate{{ forloop.counter }}">
+                      <!-- {{ candidate.party_id }}  -->
+                      {% for party in party_list%}
+                        {% if party.party_id == candidate.party_id %}
+
+                          <img src="{{ party.symbol.url }}" alt="" class="img ">
+                          <!-- <img src="{% static "home/media/swastikSymbol.png" alt="" class="img" %}"> -->
+                          {{party.name}}
+                          <div class="overlay">
+                            <div class="text">
+                              Click and press submit to vote
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </label>
+
+                  </div>
+
+
+              </div>
+              {% endif %}
+
+            {% endfor %}
+
+            <input type="text" name="page" value="{{ page_number }}" />
+
+            <div class="">
+              <input type="submit" value="Submit" class = "btn btn-danger"  >
+            </div>
+        </form>
+    {% endif %}
+
+    {%if page_number == 2 %}
+      <h3>Choose your Candidate's Party for the post of Secretary</h3>
+        <form action="{% url 'home:voted'  %}" method="POST">
+            {% csrf_token %}
+
+            {% for candidate in candidate_list %}
+              {% if candidate.post.post_name == 'Secretary'%}
+              <div class="candidate-items">
+                <input type="radio" id = "candidate{{ forloop.counter }}" name = "candidate" value = "{{ candidate.candidate_id }}" />
+                  <div class="candidate-card">
+
+
+                    <label for="candidate{{ forloop.counter }}">
+                      <!-- {{ candidate.party_id }}  -->
+                      {% for party in party_list%}
+                        {% if party.party_id == candidate.party_id %}
+
+                          <img src="{{ party.symbol.url }}" alt="" class="img ">
+                          <!-- <img src="{% static "home/media/swastikSymbol.png" alt="" class="img" %}"> -->
+                          {{party.name}}
+                          <div class="overlay">
+                            <div class="text">
+                              Click and press submit to vote
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </label>
+
+                  </div>
+
+
+              </div>
+              {% endif %}
+
+            {% endfor %}
+
+            <input type="text" name="page" value="{{ page_number }}" />
+
+            <div class="">
+              <input type="submit" value="Submit" class = "btn btn-danger"  >
+            </div>
+        </form>
+    {% endif %}
+
+    {%if page_number == 3 %}
+      <h3>Choose your Candidate's Party for the post of Treasurer</h3>
+        <form action="{% url 'home:voted'  %}" method="POST">
+            {% csrf_token %}
+
+            {% for candidate in candidate_list %}
+              {% if candidate.post.post_name == 'Treasurer'%}
+              <div class="candidate-items">
+                <input type="radio" id = "candidate{{ forloop.counter }}" name = "candidate" value = "{{ candidate.candidate_id }}" />
+                  <div class="candidate-card">
+
+
+                    <label for="candidate{{ forloop.counter }}">
+                      <!-- {{ candidate.party_id }}  -->
+                      {% for party in party_list%}
+                        {% if party.party_id == candidate.party_id %}
+
+                          <img src="{{ party.symbol.url }}" alt="" class="img ">
+                          <!-- <img src="{% static "home/media/swastikSymbol.png" alt="" class="img" %}"> -->
+                          {{party.name}}
+                          <div class="overlay">
+                            <div class="text">
+                              Click and press submit to vote
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </label>
+
+                  </div>
+
+
+              </div>
+              {% endif %}
+
+            {% endfor %}
+
+            <input type="text" name="page" value="{{ page_number }}" />
+
+            <div class="">
+              <input type="submit" value="Submit" class = "btn btn-danger"  >
+            </div>
+        </form>
+    {% endif %}
+
+    {%if page_number == 4 %}
+      <h3>Choose your Candidate's Party for the post of Member</h3>
+        <form action="{% url 'home:voted'  %}" method="POST">
+            {% csrf_token %}
+
+            {% for candidate in candidate_list %}
+              {% if candidate.post.post_name == 'Member'%}
+              <div class="candidate-items">
+                <input type="radio" id = "candidate{{ forloop.counter }}" name = "candidate" value = "{{ candidate.candidate_id }}" />
+                  <div class="candidate-card">
+
+
+                    <label for="candidate{{ forloop.counter }}">
+                      <!-- {{ candidate.party_id }}  -->
+                      {% for party in party_list%}
+                        {% if party.party_id == candidate.party_id %}
+
+                          <img src="{{ party.symbol.url }}" alt="" class="img ">
+                          <!-- <img src="{% static "home/media/swastikSymbol.png" alt="" class="img" %}"> -->
+                          {{party.name}}
+                          <div class="overlay">
+                            <div class="text">
+                              Click and press submit to vote
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </label>
+
+                  </div>
+
+
+              </div>
+              {% endif %}
+
+            {% endfor %}
+
+            <input type="text" name="page" value="{{ page_number }}" />
+
+            <div class="">
+              <input type="submit" value="Submit" class = "btn btn-danger"  >
+            </div>
+        </form>
+    {% endif %}
+
+
+
+
+
+  {%endif%}
+
+</div>
+{% endblock %}
+
+
+<!-- {% block js %}
+<script>
+
+
+  $(document).ready(function() {
+    $(".candidate-items input:radio").click(function() {
+
+      // $("div.candidate-card >label > img:first-of-type").css("opacity",1);
+      // $("div.candidate-card >label > img:nth-of-type(2)").css("opacity",0);
+      // $("div.candidate-card >label > img:first-of-type").addClass("voting");
+      $("div.candidate-card").addClass("voting");
+
+
+     });
+
+    $("input:radio").prop("checked", true).trigger("click");
+
+  });
+</script>
+{% endblock %} -->

@@ -1,0 +1,59 @@
+{% extends 'registration/base.html' %}
+
+{% block title %} Registration Links {% endblock %}
+
+{% load staticfiles %}
+
+{% block stylesheet%}
+<link rel="stylesheet" href="{% static 'registration/reglinks.css' %}">
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container">
+
+  <div class="add">
+
+
+    <div class="text">
+      <h4>Add Particulars</h4>
+    </div>
+    <a href="{% url 'registration:election_add' %}" class="col-md-4"><button type="button" name="button" class="btn btn-primary">Add Election</button></a>
+    <a href="{% url 'registration:post_add' %}" class="col-md-4"> <button type="button" name="button" class="btn btn-primary"> Add Post </button> </a>
+    <a href="{% url 'registration:party_add' %}" class="col-md-4"><button type="button" name="button" class="btn btn-primary"> Add Party  </button></a>
+    <a href="{% url 'registration:college_add' %}" class="col-md-4"><button type="button" name="button" class="btn btn-primary"> Add College  </button></a>
+    <a href="{% url 'registration:student_add' %}" class="col-md-4"><button type="button" name="button" class="btn btn-primary"> Add Student  </button> </a>
+    <a href="{% url 'registration:candidate_add' %}" class="col-md-4"><button type="button" name="button" class="btn btn-primary"> Add Candidate</button> </a>
+
+  </div>
+
+
+
+    <br>
+
+  <div class="modify">
+
+
+    <div class="text">
+      <h4>View Particulars</h4>
+    </div>
+
+    <a href="{% url 'registration:candidate_list' %}" class="col-md-4"> <button type="button" name="button" class="btn btn-primary">View Candidate</button> </a>
+    <a href="{% url 'registration:election_list' %}" class="col-md-4"> <button type="button" name="button" class="btn btn-primary">View Election</button> </a>
+    <a href="{% url 'registration:party_list' %}" class="col-md-4"> <button type="button" name="button" class="btn btn-primary">View Party</button> </a>
+    <a href="{% url 'registration:post_list' %}" class="col-md-4"> <button type="button" name="button" class="btn btn-primary">View Post</button> </a>
+    <a href="{% url 'registration:college_list' %}" class="col-md-4"> <button type="button" name="button" class="btn btn-primary">View College</button> </a>
+    <a href="{% url 'registration:student_list' %}" class="col-md-4"> <button type="button" name="button" class="btn btn-primary">View Student</button> </a>
+  </div>
+<a href="{% url 'registration:logout' %}"><button type="button" name="button" class = "btn btn-danger">Logout</button></a>
+
+
+</div>
+{% endblock %}
+
+
+<!-- <a href="{% url 'home:index' %}">Click Here To vote</a>
+<hr>
+<a href="{% url 'home:result' %}">Click Here To View Results</a> -->

@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+
+{% block title %} Read Candidate{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Candidates</h2>
+  {% if candidate_list %}
+    <ul>
+        {% for candidate in candidate_list %}
+            <li><p>{{ candidate.candidate_id }}|{{candidate.post}}|{{candidate.voter_id}}</p>
+              <a href="{% url 'registration:candidate_update' candidate.candidate_id %}"><button type="button" class = "btn btn-info" name="button">Update</button></a>
+              <a href="{% url 'registration:candidate_delete' candidate.candidate_id %}"><button type="button" class = "btn btn-danger" name="button">Delete</button></a>
+            </li>
+        {% endfor %}
+    </ul>
+  {% else %}
+    <p>No Candidates are available.</p>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Winners{% endblock %}
+
+{% block body %}
+
+
+
+<div class="mid">
+  <div class="heading">
+    <h2>Winners</h2>
+
+  </div>
+    {% if winners %}
+
+      <div class="row">
+
+        <div class="col col-md-3">
+          <strong>Post</strong>
+        </div>
+
+        <div class="col col-md-3">
+          <strong>Votes</strong>
+        </div>
+
+        <div class="col col-md-3">
+          <strong>Winning Party</strong>
+        </div>
+      </div>
+          {% for winner in winners %}
+            <!-- <p>{{ winner.party_id }}|{{winner.post}}|{{winner.votes}}</p> -->
+
+            <div class="row">
+              
+              <div class="col col-md-3">
+                {{winner.post}}
+              </div>
+
+              <div class="col col-md-3">
+                {{winner.votes}}
+              </div>
+              <div class="col col-md-3">
+                {% for party in party_list%}
+                  {% if party.party_id == winner.party_id %}
+                    <span>{{party.name}}</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+    {% else %}
+      <p>No College are available.</p>
+    {% endif %}
+
+</div>
+
+  <style media="screen">
+    /*.row{
+      margin-left: 25px;
+    }*/
+
+    /*h2{
+      margin-left: 290px;
+    }*/
+    .heading{
+      margin:auto;
+    }
+    div.mid{
+      width:50%;
+      margin:auto;
+    }
+
+  </style>
+
+{% endblock %}
