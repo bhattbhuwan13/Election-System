@@ -28,8 +28,6 @@ def login(request):
         candidate_list = Candidate.objects.all().filter(election_id = selected_election_id ).order_by('party_id')
         student_list = Student.objects.all().filter()
 
-        # return HttpResponse((selected_student_name.upper(),int(selected_student_citizenship)))
-
         for student in student_list:
             # print("Inside For Loop")
             # print ((student.name).replace(" ", ""))
@@ -47,18 +45,10 @@ def login(request):
                 # print(student.citizenship_no)
                 # print(selected_student_citizenship)
                 # break
-            # else:
-                # return redirect('home:log-in')
-                # return login(request)
-        else:
-            return render(request,'home/log-in.html',{'election_list':election_list})
+            # return render(request,'home/log-in.html')
+            # print("NO")
 
-        # return render(request,'home/log-in.html')
-        # print("NO")
-
-    else:
-        # print("GET Method")
-        return render(request,'home/log-in.html',{'election_list':election_list})
+    return render(request,'home/log-in.html',{'election_list':election_list})
         # return login(request)
 
 
@@ -113,19 +103,16 @@ def voted(request):
         selected_candidate.save()
 
         # page_number = request.POST['page']
-        page_number = ((int(page_number) + 1))
-        if page_number == 5:
-            # return render(request, 'home/index.html', {'candidate_list': candidate_list,
-            #                                            'page_number': page_number,})
-            page_number = 0
-            return redirect('home:log-in')
-
-
-        else:
+        page_number += 1
+        if page_number != 5:
             # page_number = ((int(page_number)+ 1))
             return render(request, 'home/index.html', {'candidate_list': candidate_list,
                                                        'page_number': page_number,
                                                        'party_list':party_list,})
+        # return render(request, 'home/index.html', {'candidate_list': candidate_list,
+        #                                            'page_number': page_number,})
+        page_number = 0
+        return redirect('home:log-in')
 
         # return render(request,'home/index.html', {'candidate_list': candidate_list,
         #                                           'page_number': page_number,})
@@ -135,22 +122,20 @@ def user_login(request):
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request,username = cd['username'],password = cd['password'])
-
-            if user is not None:
-                if user.is_active:
-                    login(request)
-                    candidates = Candidate.objects.order_by('name')
-                    return render(request, 'home/dashboard.html',{'candidates':candidates,
-                                                                 })
-                else:
-                    return HttpResponse('Account Disabled')
-
-        else:
+        if not form.is_valid():
             return HttpResponse('Invalid Login')
 
+        cd = form.cleaned_data
+        user = authenticate(request,username = cd['username'],password = cd['password'])
+
+        if user is not None:
+            if not user.is_active:
+                return HttpResponse('Account Disabled')
+
+            login(request)
+            candidates = Candidate.objects.order_by('name')
+            return render(request, 'home/dashboard.html',{'candidates':candidates,
+                                                         })
     else:
         form = LoginForm()
 

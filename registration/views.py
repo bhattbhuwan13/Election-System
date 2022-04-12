@@ -23,20 +23,19 @@ from django.contrib.auth.decorators import login_required
 def homeView(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request,username = cd['username'],password = cd['password'])
-
-            if user is not None:
-                if user.is_active:
-                    login(request,user)
-                    # candidates = Candidate.objects.order_by('name')
-                    return render(request, 'registration/reg-links.html',)
-                else:
-                    return HttpResponse('Account Disabled')
-
-        else:
+        if not form.is_valid():
             return HttpResponse('Invalid Login')
+
+        cd = form.cleaned_data
+        user = authenticate(request,username = cd['username'],password = cd['password'])
+
+        if user is not None:
+            if user.is_active:
+                login(request,user)
+                # candidates = Candidate.objects.order_by('name')
+                return render(request, 'registration/reg-links.html',)
+            else:
+                return HttpResponse('Account Disabled')
 
     else:
         form = LoginForm()
@@ -47,20 +46,19 @@ def homeView(request):
 def register(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request,username = cd['username'],password = cd['password'])
-
-            if user is not None:
-                if user.is_active:
-                    login(request,user)
-                    # candidates = Candidate.objects.order_by('name')
-                    return render(request, 'registration/reg-links.html',)
-                else:
-                    return HttpResponse('Account Disabled')
-
-        else:
+        if not form.is_valid():
             return HttpResponse('Invalid Login')
+
+        cd = form.cleaned_data
+        user = authenticate(request,username = cd['username'],password = cd['password'])
+
+        if user is not None:
+            if user.is_active:
+                login(request,user)
+                # candidates = Candidate.objects.order_by('name')
+                return render(request, 'registration/reg-links.html',)
+            else:
+                return HttpResponse('Account Disabled')
 
     else:
         form = LoginForm()
@@ -279,38 +277,37 @@ def logout_view(request):
 @login_required(login_url='/registration/')
 def winnerList(request):
     candidate_list = Candidate.objects.all()
-    VicePresident =[]
-    Member=[]
-    Treasurer=[]
-    Secretary=[]
-    President=[]
-
-    winners=[]
-
+    VicePresident = []
+    Member = []
+    Treasurer = []
+    Secretary = []
+    President = []
     for candidate in candidate_list:
-        if candidate.post.post_name == 'Vice President':
-            VicePresident.append(candidate)
         if candidate.post.post_name == 'Member':
             Member.append(candidate)
-        if candidate.post.post_name == 'Treasurer':
-            Treasurer.append(candidate)
-        if candidate.post.post_name == 'Secretary':
-            Secretary.append(candidate)
-        if candidate.post.post_name == 'President':
+        elif candidate.post.post_name == 'President':
             President.append(candidate)
 
 
+        elif candidate.post.post_name == 'Secretary':
+            Secretary.append(candidate)
+        elif candidate.post.post_name == 'Treasurer':
+            Treasurer.append(candidate)
+        elif candidate.post.post_name == 'Vice President':
+            VicePresident.append(candidate)
     VicePresident = sorted(VicePresident,key=attrgetter('votes'))
     President = sorted(President,key=attrgetter('votes'))
     Secretary = sorted(Secretary,key=attrgetter('votes'))
     Treasurer = sorted(Treasurer,key=attrgetter('votes'))
     Member = sorted(Member,key=attrgetter('votes'))
 
-    winners.append(VicePresident[-1])
-    winners.append(President[-1])
-    winners.append(Secretary[-1])
-    winners.append(Treasurer[-1])
-    winners.append(Member[-1])
+    winners = [
+        VicePresident[-1],
+        President[-1],
+        Secretary[-1],
+        Treasurer[-1],
+        Member[-1],
+    ]
 
     # global winning
     # winning= []
