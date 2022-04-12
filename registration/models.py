@@ -23,7 +23,7 @@ class College(models.Model):
         db_table = 'college'
 
     def __str__(self):
-        return (self.name + " - " + str(self.college_id))
+        return f"{self.name} - {str(self.college_id)}"
 
 
 
@@ -43,7 +43,10 @@ class Student(models.Model):
         db_table = 'student'
 
     def __str__(self):
-        return (str(self.voter_id)+'    |    '+self.name+'    |    '+self.citizenship_no)
+        return (
+            f'{str(self.voter_id)}    |    {self.name}    |    '
+            + self.citizenship_no
+        )
 
 
 
@@ -69,7 +72,7 @@ class Party(models.Model):
         db_table= 'Party'
 
     def __str__(self):
-        return (self.name + '  |  ' + str(self.party_id) )
+        return f'{self.name}  |  {str(self.party_id)}'
 
 
 class Post(models.Model):
@@ -99,7 +102,9 @@ class Candidate(models.Model):
         db_table = 'candidate'
 
     def __str__(self):
-        return (str(self.candidate_id)+'    |    '+str(self.post)+'    |    '+str(self.party_id))
+        return f'{str(self.candidate_id)}    |    {str(self.post)}    |    ' + str(
+            self.party_id
+        )
 
 
 class WinnerReport(models.Model):
